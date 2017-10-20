@@ -2,12 +2,14 @@ package io.ferreyra.homeaway_challenge.eventDetail;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import io.ferreyra.homeaway_challenge.eventDetail.dagger.DaggerDetailComponent;
 import io.ferreyra.homeaway_challenge.eventDetail.dagger.DetailModule;
+import io.ferreyra.homeaway_challenge.eventDetail.mvp.DetailPresenter;
 import io.ferreyra.homeaway_challenge.eventDetail.mvp.DetailView;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
 
@@ -21,6 +23,9 @@ public class DetailActivity extends AppCompatActivity {
 
     @Inject
     DetailView view;
+
+    @Inject
+    DetailPresenter presenter;
 
 
     @Override
@@ -39,10 +44,21 @@ public class DetailActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             SGEvent event = (SGEvent)extras.get(INTENT_SG_EVENT);
-            view.setEvent (event);
-        }
+            presenter.setEvent(event);
 
+        } else {
+            Toast.makeText(this, "There was an error fetching the event details, please try again later", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         setContentView(view);
+        presenter.onCreate();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
 
 }
