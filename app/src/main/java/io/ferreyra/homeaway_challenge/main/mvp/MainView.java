@@ -2,13 +2,10 @@ package io.ferreyra.homeaway_challenge.main.mvp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.widget.RelativeLayout;
-
 
 import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
 import com.jakewharton.rxbinding.support.v7.widget.SearchViewQueryTextEvent;
@@ -20,7 +17,6 @@ import butterknife.ButterKnife;
 import io.ferreyra.homeaway_challenge.R;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
 import rx.Observable;
-import rx.subjects.PublishSubject;
 
 /**
  * Created by carlos on 10/19/17.
