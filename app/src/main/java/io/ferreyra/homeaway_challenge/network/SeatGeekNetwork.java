@@ -5,13 +5,13 @@ package io.ferreyra.homeaway_challenge.network;
  */
 
 
-import io.ferreyra.homeaway_challenge.network.model.SeatGeekEvents;
+import io.ferreyra.homeaway_challenge.network.model.SGEvents;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
 public interface SeatGeekNetwork {
 
-    @GET("https://api.seatgeek.com/2/events")
-    Observable<SeatGeekEvents> getEvents(@Query("q") String eventName);
+    @GET("/2/events")
+    Observable<SGEvents> getEvents(@Query("q") String eventName);
 }

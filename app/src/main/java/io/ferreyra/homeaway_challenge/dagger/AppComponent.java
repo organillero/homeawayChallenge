@@ -21,6 +21,6 @@ public interface  AppComponent {
 
     Context context();
     OkHttpClient okhttpClient();
-    //SeatGeekNetwork seatWeekNetwork();
-    //Picasso picasso();
+    SeatGeekNetwork seatWeekNetwork();
+    Picasso picasso();
 }
