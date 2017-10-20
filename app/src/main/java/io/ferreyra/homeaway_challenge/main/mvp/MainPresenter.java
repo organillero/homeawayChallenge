@@ -2,10 +2,9 @@ package io.ferreyra.homeaway_challenge.main.mvp;
 
 import android.util.Log;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.ferreyra.homeaway_challenge.main.dagger.MainModule;
+import io.ferreyra.homeaway_challenge.main.MainActivity;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
 import rx.Observable;
 import rx.Subscription;
@@ -29,9 +28,10 @@ public class MainPresenter {
         this.model = model;
     }
 
-
     public void onCreate() {
         compositeSubscription.add(observeSearchView());
+        compositeSubscription.add(rowClickeSubscription());
+
     }
 
     public void onDestroy() {
@@ -46,12 +46,19 @@ public class MainPresenter {
                 .concatMap(sgEvents -> Observable.just(sgEvents.events()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        swEventsList -> {
-                            view.setEvents(swEventsList);
-                        },
-                        error -> {
-                            Log.e("Error", error.getLocalizedMessage());
-                        }
+                        swEventsList -> {view.setEvents(swEventsList); },
+                        error -> {Log.e("Error", error.getLocalizedMessage()); }
                 );
     }
+
+    private Subscription rowClickeSubscription(){
+        return view.getEventViewClickedObservable()
+                .subscribe( sgevent -> {
+                            MainActivity.start(view.getContext(), sgevent); },
+                            error -> {
+                                Log.e("Error", error.getLocalizedMessage()); }
+                );
+
+    }
+
 }

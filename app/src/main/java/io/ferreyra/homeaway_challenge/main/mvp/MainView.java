@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import io.ferreyra.homeaway_challenge.R;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
 import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by carlos on 10/19/17.
@@ -29,7 +30,7 @@ import rx.Observable;
 @SuppressLint("ViewConstructor")
 public class MainView extends RelativeLayout {
 
-    private final MainAdapter apdater;
+    private final MainAdapter adapter;
     @BindView(R.id.searchV_Events)
     SearchView searchView;
 
@@ -41,7 +42,7 @@ public class MainView extends RelativeLayout {
         inflate(getContext(), R.layout.activity_main, this);
         ButterKnife.bind(this);
 
-        this.apdater = adapter;
+        this.adapter = adapter;
         recylerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recylerView.setHasFixedSize(true);
         recylerView.setAdapter(adapter);
@@ -53,8 +54,11 @@ public class MainView extends RelativeLayout {
 
 
     public void setEvents (List<SGEvent> events){
-        apdater.setEvents(events);
-        Log.d("COOL", events.toString() );
+        adapter.setEvents(events);
+    }
+
+    public Observable<SGEvent> getEventViewClickedObservable (){
+        return this.adapter.getEventViewClickedObservable();
     }
 
 }

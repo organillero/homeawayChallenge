@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.format.DateTimeFormat;
@@ -18,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.ferreyra.homeaway_challenge.R;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by carlos on 10/20/17.
@@ -32,6 +35,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     private List<SGEvent> events = new ArrayList<>();
+
+
+    public PublishSubject<SGEvent> mViewClickSubject = PublishSubject.create();
+
+    public Observable<SGEvent> getEventViewClickedObservable() {
+        return mViewClickSubject.asObservable();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -57,6 +68,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         View v = inflater.inflate(R.layout.event_row, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
+
+        RxView.clicks(v)
+                .takeUntil(RxView.detaches(parent))
+                .map( __ -> (SGEvent)vh.itemView.getTag())
+                .subscribe(mViewClickSubject);
+
         return vh;
     }
 
@@ -73,7 +90,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.location.setText(events.get(position).venue().city());
         holder.date.setText(DateTimeFormat.mediumDateTime().print(events.get(position).date()));
 
-
+        holder.itemView.setTag(events.get(position));
     }
 
 
@@ -85,5 +102,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return events.size();
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        mViewClickSubject.onCompleted();
     }
 }
