@@ -3,6 +3,7 @@ package io.ferreyra.homeaway_challenge.main.mvp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -28,16 +29,22 @@ import rx.Observable;
 @SuppressLint("ViewConstructor")
 public class MainView extends RelativeLayout {
 
+    private final MainAdapter apdater;
     @BindView(R.id.searchV_Events)
     SearchView searchView;
 
     @BindView(R.id.recyclerV_Events)
     RecyclerView recylerView;
 
-    public MainView(Activity activity) {
+    public MainView(Activity activity, MainAdapter adapter) {
         super(activity);
         inflate(getContext(), R.layout.activity_main, this);
         ButterKnife.bind(this);
+
+        this.apdater = adapter;
+        recylerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recylerView.setHasFixedSize(true);
+        recylerView.setAdapter(adapter);
     }
 
     public Observable<SearchViewQueryTextEvent> observeSearchView() {
@@ -46,6 +53,7 @@ public class MainView extends RelativeLayout {
 
 
     public void setEvents (List<SGEvent> events){
+        apdater.setEvents(events);
         Log.d("COOL", events.toString() );
     }
 

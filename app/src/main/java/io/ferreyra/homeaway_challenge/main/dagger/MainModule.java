@@ -2,8 +2,11 @@ package io.ferreyra.homeaway_challenge.main.dagger;
 
 import android.app.Activity;
 
+import com.squareup.picasso.Picasso;
+
 import dagger.Module;
 import dagger.Provides;
+import io.ferreyra.homeaway_challenge.main.mvp.MainAdapter;
 import io.ferreyra.homeaway_challenge.main.mvp.MainModel;
 import io.ferreyra.homeaway_challenge.main.mvp.MainPresenter;
 import io.ferreyra.homeaway_challenge.main.mvp.MainView;
@@ -24,8 +27,14 @@ public class MainModule {
 
     @Provides
     @MainScope
-    public MainView providesMainView (){
-            return new MainView(activity);
+    public MainAdapter providesMainAdapter (Picasso picasso){
+        return new MainAdapter(picasso);
+    }
+
+    @Provides
+    @MainScope
+    public MainView providesMainView (MainAdapter adapter){
+            return new MainView(activity, adapter);
     }
 
     @Provides

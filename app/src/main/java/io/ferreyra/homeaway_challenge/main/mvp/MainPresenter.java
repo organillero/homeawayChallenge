@@ -52,10 +52,6 @@ public class MainPresenter {
                         error -> {
                             Log.e("Error", error.getLocalizedMessage());
                         }
-                )
-
-                ;
+                );
     }
-
-
 }
