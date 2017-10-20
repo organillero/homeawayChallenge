@@ -1,6 +1,7 @@
 package io.ferreyra.homeaway_challenge.network.model;
 
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ public abstract class SGPerformer implements Parcelable {
     public abstract String name();
 
     @SerializedName("image")
+    @Nullable
     public abstract String image();
 
 }

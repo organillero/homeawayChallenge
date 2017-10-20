@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import dagger.Module;
 import dagger.Provides;
 import io.ferreyra.homeaway_challenge.dagger.AppScope;
+import io.ferreyra.homeaway_challenge.network.model.SGAdapterFactory;
 
 /**
  * Created by carlos on 10/19/17.
@@ -19,6 +20,7 @@ public class GsonModule {
     @Provides
     public Gson context (){
         return Converters.registerAll(new GsonBuilder())
+                .registerTypeAdapterFactory(SGAdapterFactory.create())
                 .create();
 
     }
