@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import io.ferreyra.homeaway_challenge.R;
 import io.ferreyra.homeaway_challenge.eventDetail.dagger.DaggerDetailComponent;
 import io.ferreyra.homeaway_challenge.eventDetail.dagger.DetailModule;
 import io.ferreyra.homeaway_challenge.eventDetail.mvp.DetailView;

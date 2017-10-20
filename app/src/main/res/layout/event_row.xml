@@ -17,14 +17,13 @@
         android:id="@+id/event_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/event_icon"
         android:textStyle="bold"
         android:gravity="center_vertical"
         tools:text="Texas Rangers"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_toEndOf="@+id/event_icon" />
 
     <TextView
         android:id="@+id/event_location"
@@ -42,14 +41,21 @@
         android:layout_width="fill_parent"
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/event_icon"
         android:ellipsize="marquee"
         android:layout_below="@+id/event_location"
         android:maxLines="1"
         tools:text="Mon 13 Jun 2016 01:15PM"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_alignEnd="@+id/event_location" />
 
+    <Switch
+        android:id="@+id/event_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        />
 
 
 </RelativeLayout>

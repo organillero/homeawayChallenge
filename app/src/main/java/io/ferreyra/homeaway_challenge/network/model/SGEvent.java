@@ -23,6 +23,9 @@ public abstract class SGEvent implements Parcelable {
         return new $AutoValue_SGEvent.GsonTypeAdapter(gson);
     }
 
+    @SerializedName("id")
+    public abstract String id();
+
     @SerializedName("title")
     public abstract String title();
 

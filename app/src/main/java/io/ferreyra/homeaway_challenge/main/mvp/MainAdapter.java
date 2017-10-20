@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -54,6 +55,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public TextView location;
         @BindView(R.id.event_date)
         public TextView date;
+        @BindView(R.id.event_favorite)
+        public Switch favorite;
 
         public ViewHolder(View v) {
             super(v);
@@ -91,6 +94,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.date.setText(DateTimeFormat.mediumDateTime().print(events.get(position).date()));
 
         holder.itemView.setTag(events.get(position));
+        holder.favorite.setVisibility(View.GONE);
     }
 
 
