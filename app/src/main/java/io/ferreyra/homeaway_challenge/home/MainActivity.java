@@ -1,7 +1,9 @@
-package io.ferreyra.homeaway_challenge;
+package io.ferreyra.homeaway_challenge.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import io.ferreyra.homeaway_challenge.R;
 
 public class MainActivity extends AppCompatActivity {
 
