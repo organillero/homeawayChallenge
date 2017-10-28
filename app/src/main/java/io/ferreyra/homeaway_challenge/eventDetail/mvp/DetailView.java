@@ -2,7 +2,6 @@ package io.ferreyra.homeaway_challenge.eventDetail.mvp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -16,11 +15,9 @@ import org.joda.time.format.DateTimeFormat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.ferreyra.homeaway_challenge.R;
-import io.ferreyra.homeaway_challenge.main.mvp.MainAdapter;
 import io.ferreyra.homeaway_challenge.network.model.SGEvent;
 import rx.Observable;
 import rx.subjects.PublishSubject;
-import rx.subjects.Subject;
 
 /**
  * Created by carlos on 10/20/17.
