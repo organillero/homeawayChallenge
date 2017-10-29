@@ -1,7 +1,6 @@
 package io.ferreyra.homeaway_challenge.network.model;
 
 import com.google.gson.TypeAdapterFactory;
-import com.ryanharter.auto.value.gson.AutoValueGsonAdapterFactoryProcessor;
 import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
 
 /**

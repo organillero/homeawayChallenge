@@ -57,6 +57,9 @@ dependencies {
 
     //Gson
     compile 'com.google.code.gson:gson:2.8.0'
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-gson:0.6.0'
+    provided 'com.ryanharter.auto.value:auto-value-gson-annotations:0.6.0'
+
     compile ('com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.5.0') {
         exclude group: "joda-time", module: "joda-time"
     }
@@ -69,13 +72,18 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-support-v4:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.0'
 
+
     //Butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     //AutoValue
-    compileOnly "com.google.auto.value:auto-value:1.5.2"
+    provided "com.google.auto.value:auto-value:1.5.2"
+    provided 'com.ryanharter.auto.value:auto-value-gson:0.6.0'
+    compile 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
     annotationProcessor "com.google.auto.value:auto-value:1.5.2"
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-gson:0.6.0'
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
 
 
     //Joda time
